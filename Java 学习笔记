@@ -1,0 +1,171 @@
+Java 学习：
+
+方法的定义：
+
+修饰符 返回值类型 方法名（参数类型 参数名）{
+	方法体
+
+	return 返回值；
+}
+
+方法包含一个方法头和一个方法体，下面是一个方法的所有部分：
+
+修饰符：修饰符，告诉编辑器如何调用方法，定义了该方法的访问类型
+
+返回值类型：方法可能会返回值 执行方法但没有返回值，关键字void
+
+方法名：是方法的实际名称，方法名和参数表共同构成方法签名
+
+参数类型：参数是一个占位符，当方法被调用的时候，传递值给参数，这个值被称为实参数或变量。参数列表是指方法的参数类型，顺序和参数的个数，参数是可选的，方法可以不包含任何参数。
+
+方法体：方法体包括具体的语句，定义该方法的功能
+
+pubilc static int age(int birthday){……}
+
+static float interest(float principal,int year){……}
+
+注意：在一些语言中方法可以叫过程和函数。一个返回非void类型返回值的方法称为函数，一个返回void类型返回值的方法叫过程
+
+public static int max(int num1,int num2){
+	int result;// 声明函数
+
+	if(num1>num2)
+		result = num1;
+	else
+		result = num2;
+
+	return result;
+}
+
+
+方法的调用
+Java 支持两种调用方法的方式，根据方法是否返回值来选择
+
+当程序调用一个方法的时候，程序的控制权交给了被调用的方法。
+
+当调用一个方法返回一个值的时候，方法调用通常被当做一个值：
+int larger = mar(30,40);
+
+如果返回值是一个void，方法调用一定是一条语句：
+System.out.println("XXXXXX");
+
+
+实例：
+
+public class TestMax{
+	/* 主方法 */
+	public static void main(String[] args){
+		int i = 5;
+		int j = 2;
+		int k = mac(i,j);
+		System.out.println(i + "和" + j + "比较，最大值是：" + k);
+	}
+
+	/** 返回两个整数变量较大的值 **/
+	public static int mac(int num1,int num2){
+		int result;
+		if(num1>num2)
+			result = num1;
+		else
+			result = num2;
+
+		return result;
+	}
+}
+
+
+void 关键字
+
+public class TestVoidMethod{
+	public static void mian(String[] args)){
+		printGrade(78.5);
+	}
+
+	public static void printGrade(double score){
+		if(score >= 90.0){
+			System.out.println('A');
+		}
+		else if(score >= 80.0){
+			System.out.println("C");
+		}
+		else if(score >= 70.0){
+			System.out.println("D");
+		}
+		else{
+			System.out.println("F");
+		}
+	}
+}
+
+通过值传递参数
+
+调用一个方法的时候需要提供参数，你就必须按照参数列表指定的顺序提供。
+
+例如：
+public static void nPrintln(String message,int n){
+	for(int i = 0;i < n; i++){
+		System.out.println(message);
+	}
+}
+
+示例：
+下面的例子演示按值传递的效果
+
+public class TestPassByValue{
+	public static void mian(String[] args){
+		int num1 = 1;
+		int num2 = 2;
+
+		System.out.println("交换前 num1 的值为：" + num1 + "num2 的值为：" + num2);
+
+		// 调用swap方法
+		swap(nun1,num2);
+		System.out.println("\t 进入swap方法"); 
+		// \t 相当于tab，缩进
+
+	}
+
+	/** 交换两个变量的方法 */
+	public static void swap(int n1,int n2){
+		System.out.println("\t 进入swap 方法");
+		System.out.println("\t\t 交换前n1 的值为：" + n1 + ", n2 的值：" + n2);
+
+		// 交换n1 与 n2 的值
+		int temp = n1;
+		n1 = n2;
+		n2 = temp;
+
+		System.out.println("\t\t 交换后 n1 的值为" + n1 + ",n2 的值：" + n2);
+	}
+}
+
+
+方法的重载：
+上面使用的max方法仅仅适用于int型数据。但如果你想要两个浮点类型数据最大值？
+
+实例：
+public static double max(doule num1,double num2){
+	if(num1 > num2)
+		return num1;
+	else
+		return num2;
+}
+
+
+如果你调用max方法时传递的是int型参数，则int型参数的max方法就会被调用；
+如果你传递的是double型参数，则double类型的max方法体会被调用，这种方法叫方法的重载
+就是说一个类的两个方法拥有相同的名字，但是有不同的参数列表；
+Java编辑器根据方法签名判断哪个方法应该被调用。
+方法重载可以让程序更加清晰易读，执行密切相关任务的方法应该使用相同的名字；
+重载的方法必须拥有不同的参数列表。你不能仅仅依据修饰符或者返回类型的不同来重载方法。
+
+变量作用域
+
+变量的范围是程序中该变量可以被引用的部分
+方法内定义的变量被称为局部变量
+局部变量的作用范围从声明开始，直到包含它的块结束
+局部变量必须声明才可以使用
+方法的参数范围涵盖整个方法。参数实际上是一个局部变量。
+for循环的初始化部分声明变量，其作用范围在整个循环。
+但循体内声明的变量其适用范围是从它声明到循环体结束，它包含如下所示的变量声明
+
